@@ -1,10 +1,12 @@
 import Link from "next/link";
 import React from "react";
+import Signature from '@/assets/signature.png'
+import Image from "next/image";
 
 const Footer = () => {
   return (
     <div className=" flex items-center justify-center text-center p-10">
-      <div>
+      <div className=" flex flex-col gap-2 items-center justify-center">
         <Link
           href={"https://www.producthunt.com/posts/magicwrite?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-magicwrite"}
           target="_blank"
@@ -18,10 +20,9 @@ const Footer = () => {
             height="54"
           />
         </Link>
-        <p className=" font-medium text-sm">Designed & Developed by</p>
-        <h1 className=" font-bold text-3xl bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
-          Manoj Kumar
-        </h1>
+        <div className=" flex items-center justify-center">
+          <Image src={Signature} width={400} height={400} className=" select-none" alt="Signature"></Image>
+        </div>
       </div>
     </div>
   );

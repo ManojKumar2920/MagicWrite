@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        "ruthie": ["Ruthie", "sans-serif"],
+        caveat: ['Caveat', 'cursive'],
       },
       backgroundImage:{
         'hero-pattern': "url('/assets/hero-pattern.png')",

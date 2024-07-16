@@ -1,11 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Ruthie&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+
 
 @layer base{
   body {
       @apply dark:bg-[#1b1c1e] bg-[#f2f8fc];
   }
+}
+
+
+@keyframes custom-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.custom-spin {
+  animation: custom-spin 6s linear infinite; /* Adjust the duration (0.5s) as needed */
 }
 

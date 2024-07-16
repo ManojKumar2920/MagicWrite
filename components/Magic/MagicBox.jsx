@@ -7,21 +7,23 @@ import {
 } from "@google/generative-ai";
 import { Toaster, toast } from "sonner";
 import { ClipboardText } from "@phosphor-icons/react";
-
-
+import Image from "next/image";
+import MagicWriteLogo from "@/assets/logo.png";
+import "../../app/globals.css";
 
 const MagicBox = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("Simple");
+  const [selectedValue, setSelectedValue] = useState("Select Magic Tone ✨");
   const [inputText, setInputText] = useState("");
   const [paraphrasedText, setParaphrasedText] = useState("");
+  const [loading, setLoading] = useState(false);
   const apiKey = "AIzaSyBZq1zjYbgsnvRyHs6_wEGDpdHQsjCDbmk";
   const genAI = new GoogleGenerativeAI(apiKey);
 
   const model = genAI.getGenerativeModel({
     model: "gemini-1.5-flash",
     systemInstruction:
-      "The job of this model is to paraphrase the input text provided by users in simple, fluent, natural, professional, formal these types. I strongly restrict you to serve other messages or queries. Paraphrase the text according to the value type only like if professional paraphrase it professionally and don't add anything just paraphrase for the input and give result.",
+      "The job of this model is to paraphrase the input text provided by users in simple, fluent, engaging, professional, formal these types. I strongly restrict you to serve other messages or queries. Paraphrase the text according to the value type only like if professional paraphrase it professionally and don't add anything just paraphrase for the input and give result.",
   });
 
   const generationConfig = {
@@ -46,6 +48,7 @@ const MagicBox = () => {
   };
 
   const handleParaphrase = async () => {
+    setLoading(true);
     try {
       const chatSession = model.startChat({
         generationConfig,
@@ -55,10 +58,12 @@ const MagicBox = () => {
       const result = await chatSession.sendMessage(
         `${selectedValue}: ${inputText}`
       );
-      setParaphrasedText(result.response.text());
+      setParaphrasedText(await result.response.text());
+      setLoading(false);
     } catch (error) {
       console.error("Error paraphrasing text:", error);
       // Handle error, show a message, etc.
+      setLoading(false);
     }
   };
 
@@ -69,7 +74,7 @@ const MagicBox = () => {
         toast.success("Text copied to clipboard!");
       })
       .catch((err) => {
-        toast.error('Unable to copy the text!')
+        toast.error("Unable to copy the text!");
       });
   };
 
@@ -82,7 +87,7 @@ const MagicBox = () => {
               <button
                 onClick={toggleDropdown}
                 type="button"
-                className="inline-flex justify-center w-40 rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white dark:bg-[#121212] dark:text-gray-400 dark:border-gray-600 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none "
+                className="inline-flex justify-center w-52 rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white dark:bg-[#121212] dark:text-gray-400 dark:border-gray-600 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none "
                 id="menu-button"
                 aria-expanded={isOpen}
                 aria-haspopup="true"
@@ -102,6 +107,7 @@ const MagicBox = () => {
                   />
                 </svg>
               </button>
+
               {isOpen && (
                 <div
                   className="mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none absolute left-20 right-0"
@@ -118,7 +124,7 @@ const MagicBox = () => {
                       id="menu-item-0"
                       onClick={() => handleOptionClick("Simple")}
                     >
-                      Simple
+                      Simple 👍
                     </div>
                     <div
                       className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
@@ -127,16 +133,16 @@ const MagicBox = () => {
                       id="menu-item-1"
                       onClick={() => handleOptionClick("Fluent")}
                     >
-                      Fluent
+                      Fluent 😎
                     </div>
                     <div
                       className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
                       role="menuitem"
                       tabIndex="-1"
                       id="menu-item-2"
-                      onClick={() => handleOptionClick("Natural")}
+                      onClick={() => handleOptionClick("Engaging")}
                     >
-                      Natural
+                      Engaging 👥
                     </div>
                     <div
                       className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
@@ -145,7 +151,7 @@ const MagicBox = () => {
                       id="menu-item-3"
                       onClick={() => handleOptionClick("Formal")}
                     >
-                      Formal
+                      Formal 👔
                     </div>
                     <div
                       className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
@@ -154,11 +160,14 @@ const MagicBox = () => {
                       id="menu-item-4"
                       onClick={() => handleOptionClick("Professional")}
                     >
-                      Professional
+                      Professional 👩🏻‍💼
                     </div>
                   </div>
                 </div>
               )}
+              <p className=" text-[12px] text-slate-600 dark:text-slate-400 pt-1">
+                Tone of Words
+              </p>
             </div>
             <div className="mt-4">
               <textarea
@@ -170,6 +179,7 @@ const MagicBox = () => {
               ></textarea>
               <button
                 onClick={handleParaphrase}
+                disabled={loading}
                 className="mt-2 inline-flex justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-purple-heart-500 to-purple-600 hover:to-purple-700 bg-white dark:bg-[#121212]"
               >
                 Paraphrase
@@ -177,22 +187,36 @@ const MagicBox = () => {
             </div>
           </div>
           <div className="w-full mt-4 md:mt-0">
-            <div className="font-semibold border-b pb-3">Paraphrased Text</div>
-            <div className="mt-2">
-              <textarea
-                value={paraphrasedText}
-                className="w-full h-full border-none ring-none outline-none text-base font-medium px-3 py-2 resize-none bg-white dark:bg-[#121212]"
-                disabled
-                rows="10"
-              ></textarea>
+            <div className="font-semibold border-b py-4 text-center text-xl">
+              Paraphrased Text
+            </div>
+            <div className="mt-2 flex items-center justify-center">
+              {!paraphrasedText && (
+                <div className=" ">
+                  <Image
+                    src={MagicWriteLogo}
+                    width={200}
+                    height={200}
+                    className=" custom-spin"
+                  />
+                </div>
+              )}
             </div>
             {paraphrasedText && (
-              <button
-                onClick={handleCopy}
-                className=" mt-2 inline-flex justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-purple-heart-500 to-purple-600 hover:to-purple-700 gap-1 items-center"
-              >
-                Copy Text <ClipboardText />
-              </button>
+              <div>
+                <textarea
+                  value={paraphrasedText}
+                  className="w-full h-full border-none ring-none outline-none text-base font-medium px-3 py-2 resize-none bg-white dark:bg-[#121212]"
+                  disabled
+                  rows="10"
+                ></textarea>
+                <button
+                  onClick={handleCopy}
+                  className=" mt-2 inline-flex justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-purple-heart-500 to-purple-600 hover:to-purple-700 gap-1 items-center"
+                >
+                  Copy Text <ClipboardText />
+                </button>
+              </div>
             )}
             <div></div>
           </div>
