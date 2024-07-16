@@ -181,7 +181,7 @@ const MagicBox = () => {
             <div className="mt-2">
               <textarea
                 value={paraphrasedText}
-                className="w-full h-full border-none ring-none outline-none text-base font-medium px-3 py-2 resize-none bg-white"
+                className="w-full h-full border-none ring-none outline-none text-base font-medium px-3 py-2 resize-none bg-white bg-[#121212]"
                 disabled
                 rows="10"
               ></textarea>
