@@ -15,7 +15,7 @@ const MagicBox = () => {
   const [selectedValue, setSelectedValue] = useState("Simple");
   const [inputText, setInputText] = useState("");
   const [paraphrasedText, setParaphrasedText] = useState("");
-  const apiKey = "AIzaSyBZq1zjYbgsnvRyHs6_wEGDpdHQsjCDbmk"; // Ensure your environment variable is set correctly
+  const apiKey = process.env.GEMINI_API_KEY;
   const genAI = new GoogleGenerativeAI(apiKey);
 
   const model = genAI.getGenerativeModel({
