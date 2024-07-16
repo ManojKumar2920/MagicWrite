@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        "ruthie": ["Ruthie", "sans-serif"],
+      },
       backgroundImage:{
         'hero-pattern': "url('/assets/hero-pattern.png')",
       },
