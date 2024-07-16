@@ -170,7 +170,7 @@ const MagicBox = () => {
               ></textarea>
               <button
                 onClick={handleParaphrase}
-                className="mt-2 inline-flex justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-purple-heart-500 to-purple-600 hover:to-purple-700"
+                className="mt-2 inline-flex justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-purple-heart-500 to-purple-600 hover:to-purple-700 bg-white dark:bg-[#121212]"
               >
                 Paraphrase
               </button>
@@ -181,7 +181,7 @@ const MagicBox = () => {
             <div className="mt-2">
               <textarea
                 value={paraphrasedText}
-                className="w-full h-full border-none ring-none outline-none text-base font-medium px-3 py-2 resize-none bg-white bg-[#121212]"
+                className="w-full h-full border-none ring-none outline-none text-base font-medium px-3 py-2 resize-none bg-white dark:bg-[#121212]"
                 disabled
                 rows="10"
               ></textarea>
