@@ -74,7 +74,7 @@ const MagicBox = () => {
   };
 
   return (
-    <div className=" h-screen flex items-center justify-center">
+    <div className=" h-[80%] flex items-center justify-center">
       <div className=" w-[90%] md:w-[80%] bg-white dark:bg-[#121212] dark:text-[#f2f8fc] shadow-lg rounded-xl p-6 z-0">
         <div className="flex md:flex-col md:gap-4">
           <div className="w-full mr-4 border-r md:border-b md:border-none">
