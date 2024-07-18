@@ -18,9 +18,9 @@ const Work = () => {
             powerful paraphraser!
           </p>
         </div>
-        <div className="  p-10">
-          <div className="grid grid-cols-5 md:grid-cols-1 grid-rows-4 gap-4 p-4">
-            <div className="col-span-3 md:col-span-1 row-span-2 md:row-span-1 border rounded-xl p-6 shadow-sm bg-white dark:bg-[#121212] dark:border-slate-800">
+        <div className="  p-10 md:p-0">
+          <div className="grid grid-cols-5 md:grid-cols-2 grid-rows-4 gap-4 p-4 md:p-5">
+            <div className="col-span-3 md:col-span-2 row-span-2 md:row-span-1 border rounded-xl p-6 shadow-sm bg-white dark:bg-[#121212] dark:border-slate-800">
               <div className="flex flex-col items-start">
                 <div className=" bg-blue-100 rounded-lg p-2">
                   <FaClipboard className="text-2xl text-blue-500" />
@@ -34,7 +34,7 @@ const Work = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-2 md:col-span-1 row-span-2 md:row-span-1 col-start-4 md:col-start-1 border rounded-xl p-6 shadow-sm bg-white dark:bg-[#121212] dark:border-slate-800">
+            <div className="col-span-2 md:col-span-2 row-span-2 md:row-span-1 col-start-4 md:col-start-1 border rounded-xl p-6 shadow-sm bg-white dark:bg-[#121212] dark:border-slate-800">
               <div className="flex items-start flex-col">
                 <div className=" bg-green-100 rounded-lg p-2">
                   <FaMagic className="text-2xl text-green-500" />
@@ -49,7 +49,7 @@ const Work = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-2 md:col-span-1 row-span-2 md:row-span-1 row-start-3 md:row-start-2 border rounded-xl p-6 shadow-sm bg-white dark:bg-[#121212] dark:border-slate-800">
+            <div className="col-span-2 md:col-span-2 row-span-2 md:row-span-1 row-start-3 md:row-start-2 border rounded-xl p-6 shadow-sm bg-white dark:bg-[#121212] dark:border-slate-800">
               <div className="flex items-start flex-col">
                 <div className=" bg-pink-100 rounded-lg p-2">
                   <FaPaperPlane className="text-2xl text-pink-500" />
@@ -65,7 +65,7 @@ const Work = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-3 md:col-span-1 row-span-2 md:row-span-1 col-start-3 md:col-start-1 border rounded-xl p-6 shadow-sm bg-white dark:bg-[#121212] dark:border-slate-800">
+            <div className="col-span-3 md:col-span-2 row-span-2 md:row-span-1 col-start-3 md:col-start-1 border rounded-xl p-6 shadow-sm bg-white dark:bg-[#121212] dark:border-slate-800">
               <div className="flex items-start flex-col">
                 <div className=" bg-purple-100 rounded-lg p-2">
                   <FaEdit className="text-2xl text-purple-600" />
