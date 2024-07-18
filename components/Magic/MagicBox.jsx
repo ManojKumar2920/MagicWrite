@@ -1,10 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import {
-  GoogleGenerativeAI,
-  HarmCategory,
-  HarmBlockThreshold,
-} from "@google/generative-ai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { Toaster, toast } from "sonner";
 import { ClipboardText } from "@phosphor-icons/react";
 import Image from "next/image";
